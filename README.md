@@ -64,6 +64,132 @@ This project answers these questions using SQL analytics.
 
 - ---
 
+# 📊 Executive Summary
+
+This project analyses Bright TV's subscriber demographics and television viewing behaviour to uncover actionable business insights.
+
+Using Databricks SQL, I performed data exploration, data quality assessment, feature engineering, audience segmentation and behavioural analysis to answer key business questions.
+
+The final deliverable supports executive decision-making by identifying audience trends, viewing patterns and opportunities for improved customer engagement.
+
+### Key Outcomes
+
+✔ Cleaned and transformed raw datasets
+
+✔ Engineered new analytical features
+
+✔ Analysed subscriber demographics
+
+✔ Identified peak viewing behaviour
+
+✔ Evaluated channel performance
+
+✔ Produced business recommendations
+
+---
+
+# ❓ Business Questions
+
+The project aims to answer the following questions:
+
+### Audience Analysis
+
+- How many subscribers does Bright TV have?
+- Which province has the highest number of subscribers?
+- Which age group watches the most television?
+- What is the gender distribution of subscribers?
+- Which race groups are represented?
+
+### Viewing Behaviour
+
+- Which channels are watched most frequently?
+- What time of day has the highest audience?
+- Which days generate the highest viewing activity?
+- What percentage of viewing occurs during weekends?
+- Which viewers are classified as heavy users?
+
+### Business Intelligence
+
+- Which audience should Bright TV target?
+- Which provinces require increased marketing?
+- Which channels deserve further investment?
+
+- ---
+
+# 🧹 Data Cleaning & Preparation
+
+Before analysis, several data quality checks and transformations were performed.
+
+### Data Quality Checks
+
+- Checked for duplicate User IDs
+- Verified missing values
+- Validated Gender values
+- Standardised Race categories
+- Cleaned Province values
+- Verified Age ranges
+- Checked Email completeness
+- Checked Social Media Handle completeness
+
+### Feature Engineering
+
+Additional analytical fields were created including:
+
+- Age Groups
+- Time of Day
+- Month
+- Day Classification
+- Viewing Duration Buckets
+- Region
+- Email Availability Flag
+- Social Media Availability Flag
+
+- ---
+
+# ⚙️ SQL Workflow
+
+The project followed a structured analytics workflow.
+
+```
+
+Import Data
+
+↓
+
+Data Exploration
+
+↓
+
+Data Quality Assessment
+
+↓
+
+Data Cleaning
+
+↓
+
+Feature Engineering
+
+↓
+
+Data Modelling
+
+↓
+
+Business Analysis
+
+↓
+
+Dashboard Development
+
+↓
+
+Business Recommendations
+
+```
+
+- ---
+
 # 🛠️ Tools & Technologies
 
 | Tool | Purpose |
@@ -74,6 +200,29 @@ This project answers these questions using SQL analytics.
 | GitHub | Version Control |
 | Power BI | Dashboard Development |
 
+---
+
+# 📈 Executive KPIs
+
+| KPI | Result |
+|------|---------|
+| Total Subscribers | XXXX |
+| Total Viewing Sessions | XXXX |
+| Average Viewing Duration | XX mins |
+| Top Province | Gauteng |
+| Top TV Channel | SuperSport |
+| Weekend Viewership | XX% |
+| Heavy Users | XXXX |
+
+---
+
+# 📊 Dashboard Preview
+
+*(Dashboard screenshot will be added here after the Power BI dashboard is completed.)*
+
+```
+images/dashboard.png
+```
 ---
 
 # 📂 Dataset
