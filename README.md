@@ -3,7 +3,6 @@
 </p>
 
 # 📺 Bright TV Audience Analytics
-
 ### SQL • Business Intelligence • Data Analytics Portfolio Project
 
 This project analyses Bright TV subscriber demographics and television viewing behaviour to generate data-driven business insights and executive recommendations.
@@ -18,35 +17,25 @@ This project analyses Bright TV subscriber demographics and television viewing b
 
 | Category | Details |
 |----------|----------|
-| Project Type | Business Intelligence & SQL Analytics |
-| Industry | Media & Entertainment |
-| Tools Used | Databricks SQL, SQL, Excel, Power BI, GitHub |
-| Dataset Size | Add your actual number of records |
-| Analyst | Alice Musindo |
-| Status | In Progress |
+| **Project Type** | Business Intelligence & SQL Analytics |
+| **Industry** | Media & Entertainment |
+| **Tools Used** | Databricks SQL, SQL, Excel, Power BI, GitHub |
+| **Dataset Size** | Add your actual number of records |
+| **Analyst** | Alice Musindo |
+| **Status** | In Progress |
 
-## End-to-End Business Intelligence & SQL Analytics Project
+🚀 **[View Live Power BI Dashboard](Link_Here)** | 💻 **[View SQL Scripts](Link_Here)**
 
-## 📌 Executive Summary
+# 📌 Executive Summary
 
-# 🌟 Project Highlights
-✅ Cleaned and validated subscriber data
+## 🌟 Project Highlights
 
-✅ Standardised inconsistent values
+- **Data Integrity:** Cleaned and validated subscriber data, standardising inconsistent null values.
+- **Advanced SQL:** Built reusable SQL queries and analytical features using CTEs and window functions.
+- **KPI Development:** Developed business-focused metrics (e.g., Average View Duration, Churn Rate).
+- **Reporting Ready:** Prepared optimized, pre-aggregated datasets for seamless dashboard importing.
 
-✅ Built reusable SQL queries
-
-✅ Created analytical features for reporting
-
-✅ Joined multiple datasets using SQL
-
-✅ Developed business-focused KPIs
-
-✅ Prepared dashboard-ready datasets
-
-✅ Generated actionable business recommendations
-
-# 📑 Table of Contents
+## 📑 Table of Contents
 
 - [📌 Project Information](#-project-information)
 - [📌 Executive Summary](#-executive-summary)
@@ -78,9 +67,9 @@ This project analyses television viewing records alongside subscriber demographi
 
 The final deliverables include SQL scripts, business insights, interactive dashboard designs, and executive recommendations that demonstrate how data can support informed business decisions.
 
-# 🎯 Business Problem
+## 🎯 Business Problem
 
-Bright TV collects large volumes of customer profile and television viewership data. However, raw operational data alone does not provide meaningful insights for executives.
+Bright TV experiences high subscriber churn and low engagement on specific broadcasting slots. Management lacks centralized visibility into how different subscriber demographics interact with existing TV content, limiting their ability to optimize ad revenue and program scheduling.
 
 The challenge is to transform this data into actionable intelligence that answers critical business questions, including:
 
@@ -93,10 +82,12 @@ The challenge is to transform this data into actionable intelligence that answer
 
 This project addresses these questions through SQL analysis and business intelligence techniques.
 ---
-# 🎯 Project Objectives
+## 🎯 Project Objectives
 
 The objectives of this project are to:
-
+- Identify key factors driving subscriber viewership and drop-offs.
+- Segment audience demographics to optimize targeted advertising campaigns.
+- Build an interactive BI dashboard to track viewership KPIs over time.
 - Perform comprehensive data quality assessment.
 - Identify and resolve missing and inconsistent values.
 - Prepare clean analytical datasets.
@@ -107,8 +98,12 @@ The objectives of this project are to:
 - Develop interactive dashboard-ready datasets.
 - Generate business recommendations supported by data.
 
- # 🛠️ Technology Stack
-
+ ## 🛠️ Technology Stack
+ 
+- **Data Warehousing & Querying:** Databricks SQL for scalable cloud-based data processing.
+- **Data Transformation:** SQL (Joins, CTEs, Window Functions) for data cleaning and aggregation.
+- **Data Visualisation:** Power BI for building executive-ready reports.
+- 
 | Tool | Purpose |
 |------|---------|
 | Databricks SQL | Data exploration, transformation and analysis |
@@ -119,10 +114,11 @@ The objectives of this project are to:
 | Canva | Project documentation and visual design |
 
 # 📂 Dataset Overview
+The project utilizes two primary data tables: `subscriber_demographics` and `viewing_behaviour`.
 
-# 📖 Data Dictionary
+## 📖 Data Dictionary
 
-## User Profiles Dataset
+#### 1. Subscriber Demographics Table
 
 | Column | Description |
 |----------|-------------|
