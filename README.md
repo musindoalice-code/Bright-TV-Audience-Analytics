@@ -2,6 +2,18 @@
   <img src="images/banner.png" alt="Bright TV Audience Analytics Banner" width="100%">
 </p>
 
+# 📺 Bright TV Audience Analytics
+
+### SQL • Business Intelligence • Data Analytics Portfolio Project
+
+This project analyses Bright TV subscriber demographics and television viewing behaviour to generate data-driven business insights and executive recommendations.
+
+![Databricks SQL](https://img.shields.io/badge/Databricks-SQL-red?logo=databricks&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-Analytics-blue?logo=postgresql&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power_BI-Dashboard-F2C811?logo=powerbi&logoColor=black)
+![GitHub](https://img.shields.io/badge/GitHub-Portfolio-181717?logo=github&logoColor=white)
+![Excel](https://img.shields.io/badge/Excel-Analysis-217346?logo=microsoft-excel&logoColor=white)
+
 ## 📌 Project Information
 
 | Category | Details |
@@ -11,15 +23,55 @@
 | Tools Used | Databricks SQL, SQL, Excel, Power BI, GitHub |
 | Dataset Size | Add your actual number of records |
 | Analyst | Alice Musindo |
-| Status | Completed |
-
-# 📺 Bright TV Audience Analytics
-This project analyses Bright TV subscriber demographics and television viewing behaviour to generate data-driven business insights and executive recommendations.
+| Status | In Progress |
 
 ## End-to-End Business Intelligence & SQL Analytics Project
 
 ## 📌 Executive Summary
 
+# 🌟 Project Highlights
+
+# 📑 Table of Contents
+
+- [📌 Project Information](#-project-information)
+- [📌 Executive Summary](#-executive-summary)
+- [🌟 Project Highlights](#-project-highlights)
+- [🎯 Business Problem](#-business-problem)
+- [🎯 Project Objectives](#-project-objectives)
+- [🛠️ Technology Stack](#️-technology-stack)
+- [📂 Dataset Overview](#-dataset-overview)
+- [📖 Data Dictionary](#-data-dictionary)
+- [🗂️ Data Model](#️-data-model)
+- [🔄 Project Workflow](#-project-workflow)
+- [🧹 Data Cleaning & Preparation](#-data-cleaning--preparation)
+- [⚙️ Feature Engineering](#️-feature-engineering)
+- [📊 Exploratory Data Analysis](#-exploratory-data-analysis-eda)
+- [💻 SQL Skills Demonstrated](#-sql-skills-demonstrated)
+- [📌 Business Questions Answered](#-business-questions-answered)
+- [📊 Executive KPIs](#-executive-kpis)
+- [📈 Dashboard Preview](#-dashboard-preview)
+- [💡 Business Recommendations](#-business-recommendations)
+- [📁 Repository Structure](#-repository-structure)
+- [🎯 Skills Demonstrated](#-skills-demonstrated)
+- [🚀 Future Improvements](#-future-improvements)
+- [👤 About Me](#-about-me)
+- [📬 Contact](#-contact)
+  
+✅ Cleaned and validated subscriber data
+
+✅ Standardised inconsistent values
+
+✅ Built reusable SQL queries
+
+✅ Created analytical features for reporting
+
+✅ Joined multiple datasets using SQL
+
+✅ Developed business-focused KPIs
+
+✅ Prepared dashboard-ready datasets
+
+✅ Generated actionable business recommendations
 # 📑 Table of Contents
 
 - [Business Problem](#-business-problem)
@@ -86,6 +138,76 @@ The objectives of this project are to:
 
 # 📂 Dataset Overview
 
+# 📖 Data Dictionary
+
+# 🗂️ Data Model
+
+The project combines subscriber demographic information with television viewing activity using the **UserID** field.
+
+```text
+┌──────────────────────────────┐
+│      User Profiles           │
+├──────────────────────────────┤
+│ UserID (Primary Key)         │
+│ Age                          │
+│ Gender                       │
+│ Race                         │
+│ Province                     │
+│ Email                        │
+│ Social Media Handle          │
+└──────────────┬───────────────┘
+               │
+               │ UserID
+               ▼
+┌──────────────────────────────┐
+│      Viewership              │
+├──────────────────────────────┤
+│ UserID (Foreign Key)         │
+│ RecordDate                   │
+│ Channel                      │
+│ Duration                     │
+│ Viewing Time                 │
+└──────────────────────────────┘
+```
+# 📊 Exploratory Data Analysis (EDA)
+
+Before developing KPIs, exploratory analysis was conducted to understand the characteristics of the data.
+
+The analysis focused on:
+
+- Subscriber demographics
+- Viewing trends
+- Channel popularity
+- Regional distribution
+- Peak viewing periods
+- Customer engagement
+- Screen time distribution
+- Weekend vs Weekday behaviour
+
+The findings from the exploratory analysis formed the foundation for the business insights and dashboard development.
+
+## User Profiles Dataset
+
+| Column | Description |
+|----------|-------------|
+| UserID | Unique identifier assigned to each subscriber |
+| Age | Subscriber's age in years |
+| Gender | Subscriber's gender |
+| Race | Subscriber's race classification |
+| Province | Subscriber's province of residence |
+| Email | Email address availability |
+| Social Media Handle | Subscriber's social media account |
+
+---
+## Viewership Dataset
+
+| Column | Description |
+|----------|-------------|
+| UserID | Subscriber identifier used for joining datasets |
+| RecordDate | Date and time the viewing session occurred |
+| Channel | Television channel viewed |
+| Duration | Length of the viewing session |
+| Viewing Time | Time of day the viewing occurred |
 The project consists of two datasets.
 
 ### User Profiles
@@ -300,7 +422,7 @@ The following KPIs were developed to support executive decision-making.
 | Peak Viewing Hour | Busiest viewing period |
 | Weekend Viewership | Weekend vs Weekday analysis |
 
-# 📈 Dashboard Preview
+# 📈 Dashboard screenshots will be added...
 
 ### Executive Dashboard
 
