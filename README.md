@@ -30,6 +30,21 @@ This project analyses Bright TV subscriber demographics and television viewing b
 ## 📌 Executive Summary
 
 # 🌟 Project Highlights
+✅ Cleaned and validated subscriber data
+
+✅ Standardised inconsistent values
+
+✅ Built reusable SQL queries
+
+✅ Created analytical features for reporting
+
+✅ Joined multiple datasets using SQL
+
+✅ Developed business-focused KPIs
+
+✅ Prepared dashboard-ready datasets
+
+✅ Generated actionable business recommendations
 
 # 📑 Table of Contents
 
@@ -56,39 +71,6 @@ This project analyses Bright TV subscriber demographics and television viewing b
 - [🚀 Future Improvements](#-future-improvements)
 - [👤 About Me](#-about-me)
 - [📬 Contact](#-contact)
-  
-✅ Cleaned and validated subscriber data
-
-✅ Standardised inconsistent values
-
-✅ Built reusable SQL queries
-
-✅ Created analytical features for reporting
-
-✅ Joined multiple datasets using SQL
-
-✅ Developed business-focused KPIs
-
-✅ Prepared dashboard-ready datasets
-
-✅ Generated actionable business recommendations
-# 📑 Table of Contents
-
-- [Business Problem](#-business-problem)
-- [Project Objectives](#-project-objectives)
-- [Technology Stack](#-technology-stack)
-- [Dataset Overview](#-dataset-overview)
-- [Project Workflow](#-project-workflow)
-- [Data Cleaning & Preparation](#-data-cleaning--preparation)
-- [Feature Engineering](#-feature-engineering)
-- [SQL Skills Demonstrated](#-sql-skills-demonstrated)
-- [Business Questions Answered](#-business-questions-answered)
-- [Executive KPIs](#-executive-kpis)
-- [Dashboard Preview](#-dashboard-preview)
-- [Repository Structure](#-repository-structure)
-- [Skills Demonstrated](#-skills-demonstrated)
-- [Future Improvements](#-future-improvements)
-- [About Me](#-about-me)
   
 Bright TV aims to better understand audience viewing behaviour and customer demographics to improve programming decisions, audience engagement, and strategic planning.
 
@@ -140,6 +122,30 @@ The objectives of this project are to:
 
 # 📖 Data Dictionary
 
+## User Profiles Dataset
+
+| Column | Description |
+|----------|-------------|
+| UserID | Unique identifier assigned to each subscriber |
+| Age | Subscriber's age in years |
+| Gender | Subscriber's gender |
+| Race | Subscriber's race classification |
+| Province | Subscriber's province of residence |
+| Email | Email address availability |
+| Social Media Handle | Subscriber's social media account |
+
+---
+## Viewership Dataset
+
+| Column | Description |
+|----------|-------------|
+| UserID | Subscriber identifier used for joining datasets |
+| RecordDate | Date and time the viewing session occurred |
+| Channel | Television channel viewed |
+| Duration | Length of the viewing session |
+| Viewing Time | Time of day the viewing occurred |
+The project consists of two datasets.
+
 # 🗂️ Data Model
 
 The project combines subscriber demographic information with television viewing activity using the **UserID** field.
@@ -185,30 +191,6 @@ The analysis focused on:
 - Weekend vs Weekday behaviour
 
 The findings from the exploratory analysis formed the foundation for the business insights and dashboard development.
-
-## User Profiles Dataset
-
-| Column | Description |
-|----------|-------------|
-| UserID | Unique identifier assigned to each subscriber |
-| Age | Subscriber's age in years |
-| Gender | Subscriber's gender |
-| Race | Subscriber's race classification |
-| Province | Subscriber's province of residence |
-| Email | Email address availability |
-| Social Media Handle | Subscriber's social media account |
-
----
-## Viewership Dataset
-
-| Column | Description |
-|----------|-------------|
-| UserID | Subscriber identifier used for joining datasets |
-| RecordDate | Date and time the viewing session occurred |
-| Channel | Television channel viewed |
-| Duration | Length of the viewing session |
-| Viewing Time | Time of day the viewing occurred |
-The project consists of two datasets.
 
 ### User Profiles
 
