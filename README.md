@@ -1,7 +1,7 @@
 <p align="center">
   <img src="images/banner.png" alt="Bright TV Audience Analytics Banner" width="100%">
 </p>
-# Bright-TV-Audience-Analytics
+
 This Project Analyses the viewership and user profiles of Bright TV Customers
 # 📺 Bright TV Audience Analytics
 
