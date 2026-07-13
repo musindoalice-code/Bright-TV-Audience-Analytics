@@ -1,0 +1,38 @@
+/*
+==================================================
+Bright TV Audience Analytics
+Data Exploration
+Author: Alice Musindo
+==================================================
+Purpose:
+Explore the structure and contents of the datasetsbefore performing data cleaning and analysis.
+==================================================
+*/
+
+-- View first 100 records from the viewership dataset
+SELECT *
+FROM workspace.default.bright_tv_viewership
+LIMIT 100;
+
+-- View first 10 records from the user profiles dataset
+SELECT *
+FROM workspace.default.bright_tv_userprofiles
+LIMIT 10;
+
+-- Count subscribers
+SELECT
+COUNT(*) AS TotalRows,
+COUNT(DISTINCT UserID) AS TotalSubscribers
+FROM workspace.default.bright_tv_userprofiles;
+
+-- View distinct gender values
+SELECT DISTINCT Gender
+FROM workspace.default.bright_tv_userprofiles;
+
+-- View distinct race values
+SELECT DISTINCT Race
+FROM workspace.default.bright_tv_userprofiles;
+
+-- View distinct provinces
+SELECT DISTINCT Province
+FROM workspace.default.bright_tv_userprofiles;
