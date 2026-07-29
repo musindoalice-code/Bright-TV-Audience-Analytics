@@ -158,40 +158,45 @@ Full detail: [`2. Project Planning/project_workflow.md`](<2. Project Planning/pr
 ## 🧹 Data Cleaning & Preparation
 
 Data quality checks were run in Databricks SQL before any analysis
-(`3. Data Processing/01_data_quality_checks.sql`). Key findings and how they were
-resolved (`02_data_cleaning.sql`):
+(`3. Data Processing/02_Data_Quality_Checks.sql`). Key findings and how they were
+resolved (`03_Data_Cleaning.sql`):
 
 | Issue Found | Resolution |
 |---|---|
-| 17 fully duplicated viewing records | Removed via `SELECT DISTINCT` |
-| Race missing on 25.2% of subscribers | Standardised to `Uncategorized` |
-| Gender missing on 17.1% of subscribers | Standardised to `Uncategorized` |
-| `Region = 'Uncategorized'` for 920 subscribers | Kept visible, flagged with `region_is_unknown`, excluded from "top province" rankings |
+| Raw viewership table carries the subscriber ID across two separate columns (`UserID0`, `userid4`) | Resolved with `COALESCE(UserID0, userid4)` |
+| Duplicate viewing records (same subscriber, timestamp, channel, duration logged twice) | Removed via `ROW_NUMBER()` dedup |
+| Race missing / recorded as `'other'` on ~25% of subscribers | Standardised to `'None'` |
+| Gender missing on ~17% of subscribers | Standardised to `'None'` |
+| `Province` recorded as blank text or `'None'` for 920 subscribers | Standardised to `'Uncategorized'`; excluded from "top province" rankings since it isn't a real province |
 | 920 subscribers recorded at `age = 0` | Flagged with `is_incomplete_profile`; excluded from age-based demographic analysis rather than reported as a real "Infants" segment |
-| `duration` stored as `HH:MM:SS` text | Converted to `duration_seconds` / `duration_minutes` for aggregation |
+| `email_flag` / `sm_flag` logic bug — original `OR`-based condition evaluated to 1 for every row regardless of the actual data | Rewritten to correctly check for a genuinely missing value |
+| Raw channel names inconsistent (`SawSee`/`Sawsee`, four labels for the same Live Events channel) | Standardised in `03_Data_Cleaning.sql` |
+| `Duration 2` stored as a time value; screen-time bucket originally mis-classified 1–4 minute sessions as "No Usage" | Bucket boundary corrected so any real viewing time counts as at least "Low Usage" |
 
 ## ⚙️ Feature Engineering
 
-New features built in `3. Data Processing/03_feature_engineering.sql`:
+New features built in `3. Data Processing/04_Feature_Engineering.sql`:
 
 | Feature | Business Purpose |
 |----------|------------------|
-| `duration_minutes` | Numeric, aggregatable version of session length |
-| `is_weekend` | Numeric weekend flag for direct SUM/AVG use |
-| `is_heavy_viewer` | Session-level heavy-usage flag (>60 min) |
-| `engagement_score` | Simple per-session engagement metric for dashboarding |
-| `daypart_group` | AM/PM grouping for a simpler executive dashboard slicer |
-| `subscriber_segment` | Subscriber-level tier: Inactive / Light / Regular / Power Viewer, based on total minutes watched |
+| `age_groups` | Audience segmentation (Infants/Kids/Teenager/Youth/Adult/Elder/Pensioner) |
+| `is_incomplete_profile` | Separates likely-incomplete sign-ups from real demographic data |
+| `day_classification` | Weekend vs weekday comparison |
+| `time_of_day` / `hour_of_day` | Peak viewing analysis |
+| `screen_time_bucket` | Viewer engagement analysis |
+| `month_id` / `month_name` | Monthly trend reporting |
 
 ## 💻 SQL Skills Demonstrated
 
 - **Data Exploration:** SELECT, DISTINCT, LIMIT
-- **Data Quality:** COUNT(), GROUP BY, HAVING, NULL checks, duplicate detection
-- **Data Cleaning:** CASE WHEN, COALESCE(), standardisation, missing value handling
-- **Feature Engineering:** CAST(), SPLIT(), derived columns, time and age
-  categorisation
-- **Data Analysis:** Aggregate functions, CTEs, window functions (RANK, AVG OVER),
-  business KPIs, customer segmentation
+- **Data Quality:** COUNT(), GROUP BY, HAVING, NULL checks, duplicate detection,
+  referential integrity checks
+- **Data Cleaning:** CASE WHEN, COALESCE(), TRIM(), standardisation, ROW_NUMBER()
+  deduplication, view creation
+- **Feature Engineering:** DATE_FORMAT(), HOUR(), CAST(), derived columns, time and
+  age categorisation
+- **Data Analysis:** Aggregate functions, CTEs, window functions (RANK, AVG/COUNT
+  OVER), business KPIs, customer segmentation
 
 ## 📌❓ Business Questions Answered
 
@@ -238,10 +243,14 @@ Bright-TV-Audience-Analytics/
 │   ├── business_questions.md
 │   └── project_workflow.md
 ├── 3. Data Processing/
-│   ├── 01_data_quality_checks.sql
-│   ├── 02_data_cleaning.sql
-│   ├── 03_feature_engineering.sql
-│   └── 04_eda_and_kpis.sql
+│   ├── 01_Data_Exploration.sql
+│   ├── 02_Data_Quality_Checks.sql
+│   ├── 03_Data_Cleaning.sql
+│   ├── 04_Feature_Engineering.sql
+│   ├── 05_Final_Dataset.sql
+│   ├── 06_Exploratory_Data_Analysis.sql
+│   ├── 07_KPI_Analysis.sql
+│   └── 08_Business_Insights.sql
 └── 4. Project Presentation/
     ├── executive_summary.md
     └── business_recommendations.md
