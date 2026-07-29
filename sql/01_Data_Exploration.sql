@@ -1,22 +1,33 @@
-
-/*
-=========================================================
+/* =========================================================
 Bright TV Audience Analytics
 File: 01_Data_Exploration.sql
 Author: Alice Musindo
 Date: July 2026
+Description: Initial exploration of raw Bright TV datasets.
+Tools: Databricks SQL
+========================================================= */
 
-Description:
-This script explores the structure and quality of the Bright TV datasets before transformation and analysis.
+-- Explore user profile dataset
+SELECT *
+FROM workspace.default.bright_tv_userprofiles
+LIMIT 10;
 
-Tools:
-- Databricks SQL
-- SQL
+-- Row count
+SELECT COUNT(*) AS total_user_profiles
+FROM workspace.default.bright_tv_userprofiles;
 
-=========================================================
-*/
+-- Explore viewership dataset
+SELECT *
+FROM workspace.default.bright_tv_viewership
+LIMIT 10;
 
-/*
+-- Row count
+SELECT COUNT(*) AS total_viewership_rows
+FROM workspace.default.bright_tv_viewership;
+
+-- Distinct subscribers
+SELECT COUNT(DISTINCT UserID) AS total_distinct_users
+FROM workspace.default.bright_tv_userprofiles;
 ==================================================
 Bright TV Audience Analytics
 Data Exploration
