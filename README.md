@@ -480,12 +480,9 @@ Based on the analysis, the following recommendations are proposed:
 
  # 👤 About Me
 
-Hi, I'm **Alice Musindo**, an aspiring Data Analyst with a strong interest in Business Intelligence, SQL, and data-driven decision-making.
-
+Hi, I'm **Alice Musindo**, a Data Analyst with a strong interest in Business Intelligence, SQL, and data-driven decision-making.
 This project demonstrates my ability to clean, transform, analyse and communicate data to solve real-world business problems.
-
 I am continuously developing my skills in SQL, Power BI, Excel, Databricks and data storytelling while building a portfolio of practical analytics projects.
-
 Thank you for visiting my repository.
 
 # 📬 Contact
