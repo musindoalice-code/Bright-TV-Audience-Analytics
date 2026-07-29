@@ -1,33 +1,34 @@
-/*
-=========================================================
+/* =========================================================
 Bright TV Audience Analytics
-File: 01_Data_Exploration.sql
+File: 08_Business_Insights.sql
 Author: Alice Musindo
 Date: July 2026
+Description: Final business insights from the Bright TV audience analysis.
+Tools: Databricks SQL
+========================================================= */
 
-Description:
-This script explores the structure and quality of the Bright TV datasets before transformation and analysis.
-
-Tools:
-- Databricks SQL
-- SQL
-
-=========================================================
-*/
-
--- Peak Viewing Hours
-
+-- Example insight 1: top channels by viewing volume
 SELECT
-Time_of_Day,
-COUNT(*) AS Views
-FROM FinalDataset
-GROUP BY Time_of_Day
+    TV_Channel,
+    COUNT(*) AS Views
+FROM workspace.default.FinalDataset
+GROUP BY TV_Channel
 ORDER BY Views DESC;
 
--- Weekend vs Weekday
-
+-- Example insight 2: audience by age group and channel
 SELECT
-Day_Classification,
-COUNT(*)
-FROM FinalDataset
-GROUP BY Day_Classification;
+    Age_Group,
+    TV_Channel,
+    COUNT(*) AS Views
+FROM workspace.default.FinalDataset
+GROUP BY Age_Group, TV_Channel
+ORDER BY Age_Group, Views DESC;
+
+-- Example insight 3: viewing pattern by day classification
+SELECT
+    Day_Classification,
+    Time_Of_Day,
+    COUNT(*) AS Views
+FROM workspace.default.FinalDataset
+GROUP BY Day_Classification, Time_Of_Day
+ORDER BY Day_Classification, Views DESC;
