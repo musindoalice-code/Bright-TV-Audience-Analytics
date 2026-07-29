@@ -1,11 +1,8 @@
-<p align="center">
-  <img src="images/banner.png" alt="Bright TV Audience Analytics Banner" width="100%">
-</p>
-
 # 📺 Bright TV Audience Analytics
 ### SQL • Business Intelligence • Data Analytics Portfolio Project
 
-This project analyses Bright TV subscriber demographics and television viewing behaviour to generate data-driven business insights and executive recommendations.
+This project analyses Bright TV subscriber demographics and television viewing
+behaviour to generate data-driven business insights and executive recommendations.
 
 ![Databricks SQL](https://img.shields.io/badge/Databricks-SQL-red?logo=databricks&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-Analytics-blue?logo=postgresql&logoColor=white)
@@ -20,58 +17,66 @@ This project analyses Bright TV subscriber demographics and television viewing b
 | **Project Type** | Business Intelligence & SQL Analytics |
 | **Industry** | Media & Entertainment |
 | **Tools Used** | Databricks SQL, SQL, Excel, Power BI, GitHub |
-| **Dataset Size** | Add your actual number of records |
+| **Dataset Size** | 5,375 subscribers · 9,983 cleaned viewing sessions (Q1 2016) |
 | **Analyst** | Alice Musindo |
-| **Status** | In Progress |
+| **Status** | Complete |
 
-🚀 **[View Live Power BI Dashboard](Link_Here)** | 💻 **[View SQL Scripts](Link_Here)**
-
-# 📌 Executive Summary
+## 📌 Executive Summary
 
 ## 🌟 Project Highlights
 
-- **Data Integrity:** Cleaned and validated subscriber data, standardising inconsistent null values.
-- **Advanced SQL:** Built reusable SQL queries and analytical features using CTEs and window functions.
-- **KPI Development:** Developed business-focused metrics (e.g., Average View Duration, Churn Rate).
-- **Reporting Ready:** Prepared optimized, pre-aggregated datasets for seamless dashboard importing.
+- **Data Integrity:** Cleaned and validated subscriber data — removed 17 duplicate
+  viewing records, standardised inconsistent nulls, and flagged 920 incomplete
+  sign-up profiles instead of treating them as a real audience segment.
+- **Advanced SQL:** Built reusable SQL queries and analytical features using CTEs and
+  window functions.
+- **KPI Development:** Developed business-focused metrics (e.g. Average View
+  Duration, subscriber engagement segments).
+- **Reporting Ready:** Prepared optimised, pre-aggregated datasets for seamless
+  dashboard importing.
 
 ## 📑 Table of Contents
 
-- [📌 Project Information](#-project-information)
-- [📌 Executive Summary](#-executive-summary)
-- [🌟 Project Highlights](#-project-highlights)
-- [🎯 Business Problem](#-business-problem)
-- [🎯 Project Objectives](#-project-objectives)
-- [🛠️ Technology Stack](#️-technology-stack)
-- [📂 Dataset Overview](#-dataset-overview)
-- [📖 Data Dictionary](#-data-dictionary)
-- [🗂️ Data Model](#️-data-model)
-- [🔄 Project Workflow](#-project-workflow)
-- [🧹 Data Cleaning & Preparation](#-data-cleaning--preparation)
-- [⚙️ Feature Engineering](#️-feature-engineering)
-- [📊 Exploratory Data Analysis](#-exploratory-data-analysis-eda)
-- [💻 SQL Skills Demonstrated](#-sql-skills-demonstrated)
-- [📌 Business Questions Answered](#-business-questions-answered)
-- [📊 Executive KPIs](#-executive-kpis)
-- [📈 Dashboard Preview](#-dashboard-preview)
-- [💡 Business Recommendations](#-business-recommendations)
-- [📁 Repository Structure](#-repository-structure)
-- [🎯 Skills Demonstrated](#-skills-demonstrated)
-- [🚀 Future Improvements](#-future-improvements)
-- [👤 About Me](#-about-me)
-- [📬 Contact](#-contact)
-  
-Bright TV aims to better understand audience viewing behaviour and customer demographics to improve programming decisions, audience engagement, and strategic planning.
+- [Project Information](#-project-information)
+- [Project Highlights](#-project-highlights)
+- [Business Problem](#-business-problem)
+- [Project Objectives](#-project-objectives)
+- [Technology Stack](#️-technology-stack)
+- [Dataset Overview](#-dataset-overview)
+- [Data Model](#️-data-model)
+- [Project Workflow](#-project-workflow)
+- [Data Cleaning & Preparation](#-data-cleaning--preparation)
+- [Feature Engineering](#-feature-engineering)
+- [SQL Skills Demonstrated](#-sql-skills-demonstrated)
+- [Business Questions Answered](#-business-questions-answered)
+- [Executive KPIs](#-executive-kpis)
+- [Business Recommendations](#-business-recommendations)
+- [Repository Structure](#-repository-structure)
+- [Skills Demonstrated](#-skills-demonstrated)
+- [Future Improvements](#-future-improvements)
+- [About Me](#-about-me)
 
-This project analyses television viewing records alongside subscriber demographic information using Databricks SQL. The project follows a complete analytics lifecycle, including data exploration, quality assessment, cleaning, feature engineering, exploratory analysis, KPI development, and business recommendations.
+Bright TV aims to better understand audience viewing behaviour and customer
+demographics to improve programming decisions, audience engagement, and strategic
+planning.
 
-The final deliverables include SQL scripts, business insights, interactive dashboard designs, and executive recommendations that demonstrate how data can support informed business decisions.
+This project analyses television viewing records alongside subscriber demographic
+information using Databricks SQL. It follows a complete analytics lifecycle:
+data exploration, quality assessment, cleaning, feature engineering, exploratory
+analysis, KPI development, and business recommendations.
+
+The final deliverables include SQL scripts, business insights, and executive
+recommendations demonstrating how data can support informed business decisions.
 
 ## 🎯 Business Problem
 
-Bright TV experiences high subscriber churn and low engagement on specific broadcasting slots. Management lacks centralized visibility into how different subscriber demographics interact with existing TV content, limiting their ability to optimize ad revenue and program scheduling.
+Bright TV experiences high subscriber churn and low engagement on specific
+broadcasting slots. Management lacks centralised visibility into how different
+subscriber demographics interact with existing TV content, limiting their ability
+to optimise ad revenue and program scheduling.
 
-The challenge is to transform this data into actionable intelligence that answers critical business questions, including:
+The challenge is to transform this data into actionable intelligence that answers
+critical business questions, including:
 
 - Who are Bright TV's primary viewers?
 - Which television channels attract the largest audiences?
@@ -80,30 +85,24 @@ The challenge is to transform this data into actionable intelligence that answer
 - Which customer segments should receive targeted marketing campaigns?
 - How can Bright TV improve customer retention and viewer engagement?
 
-This project addresses these questions through SQL analysis and business intelligence techniques.
----
+This project addresses these questions through SQL analysis and business
+intelligence techniques.
+
 ## 🎯 Project Objectives
 
-The objectives of this project are to:
 - Identify key factors driving subscriber viewership and drop-offs.
-- Segment audience demographics to optimize targeted advertising campaigns.
-- Build an interactive BI dashboard to track viewership KPIs over time.
+- Segment audience demographics to optimise targeted advertising campaigns.
 - Perform comprehensive data quality assessment.
 - Identify and resolve missing and inconsistent values.
 - Prepare clean analytical datasets.
 - Engineer new business-focused features.
-- Analyse audience demographics.
-- Analyse television viewing behaviour.
+- Analyse audience demographics and television viewing behaviour.
 - Calculate executive KPIs.
 - Develop interactive dashboard-ready datasets.
 - Generate business recommendations supported by data.
 
- ## 🛠️ Technology Stack
- 
-- **Data Warehousing & Querying:** Databricks SQL for scalable cloud-based data processing.
-- **Data Transformation:** SQL (Joins, CTEs, Window Functions) for data cleaning and aggregation.
-- **Data Visualisation:** Power BI for building executive-ready reports.
-- 
+## 🛠️ Technology Stack
+
 | Tool | Purpose |
 |------|---------|
 | Databricks SQL | Data exploration, transformation and analysis |
@@ -111,385 +110,164 @@ The objectives of this project are to:
 | Microsoft Excel | Data validation and exploratory analysis |
 | Power BI | Interactive dashboard development |
 | GitHub | Version control and project portfolio |
-| Canva | Project documentation and visual design |
 
-# 📂 Dataset Overview
-The project utilizes two primary data tables: `subscriber_demographics` and `viewing_behaviour`.
+## 📂 Dataset Overview
 
-## 📖 Data Dictionary
+The project uses two raw tables — `subscriber_demographics` (5,375 rows) and
+`viewing_behaviour` (10,000 rows, Q1 2016) — described in full in
+[`1. Project Description and Raw Data/data_dictionary.md`](<1. Project Description and Raw Data/data_dictionary.md>).
 
-#### 1. Subscriber Demographics Table
-
-| Column | Description |
-|----------|-------------|
-| UserID | Unique identifier assigned to each subscriber |
-| Age | Subscriber's age in years |
-| Gender | Subscriber's gender |
-| Race | Subscriber's race classification |
-| Province | Subscriber's province of residence |
-| Email | Email address availability |
-| Social Media Handle | Subscriber's social media account |
-
----
-## Viewership Dataset
-
-| Column | Description |
-|----------|-------------|
-| UserID | Subscriber identifier used for joining datasets |
-| RecordDate | Date and time the viewing session occurred |
-| Channel | Television channel viewed |
-| Duration | Length of the viewing session |
-| Viewing Time | Time of day the viewing occurred |
-The project consists of two datasets.
-
-# 🗂️ Data Model
-
-The project combines subscriber demographic information with television viewing activity using the **UserID** field.
+## 🗂️ Data Model
 
 ```text
 ┌──────────────────────────────┐
-│      User Profiles           │
+│   subscriber_demographics     │
 ├──────────────────────────────┤
-│ UserID (Primary Key)         │
-│ Age                          │
-│ Gender                       │
-│ Race                         │
-│ Province                     │
-│ Email                        │
-│ Social Media Handle          │
-└──────────────┬───────────────┘
+│ UserID (Primary Key)          │
+│ Region                        │
+│ age / age_groups               │
+│ Race                           │
+│ Gender                         │
+│ email_flag / sm_flag           │
+└──────────────┬────────────────┘
                │
-               │ UserID
+               │ UserID = sub_id
                ▼
 ┌──────────────────────────────┐
-│      Viewership              │
+│      viewing_behaviour        │
 ├──────────────────────────────┤
-│ UserID (Foreign Key)         │
-│ RecordDate                   │
-│ Channel                      │
-│ Duration                     │
-│ Viewing Time                 │
+│ sub_id (Foreign Key)           │
+│ watch_date, month_id           │
+│ Tv_channel                     │
+│ time_of_day / hour_of_day       │
+│ duration                       │
+│ day_classification              │
 └──────────────────────────────┘
 ```
-# 📊 Exploratory Data Analysis (EDA)
 
-Before developing KPIs, exploratory analysis was conducted to understand the characteristics of the data.
-
-The analysis focused on:
-
-- Subscriber demographics
-- Viewing trends
-- Channel popularity
-- Regional distribution
-- Peak viewing periods
-- Customer engagement
-- Screen time distribution
-- Weekend vs Weekday behaviour
-
-The findings from the exploratory analysis formed the foundation for the business insights and dashboard development.
-
-### User Profiles
-
-Contains subscriber demographic information including:
-
-- User ID
-- Gender
-- Race
-- Province
-- Age
-- Email
-- Social Media Handle
-
-### Viewership
-
-Contains subscriber viewing activity including:
-
-- Viewing Date
-- TV Channel
-- Viewing Duration
-- Viewing Time
-
-  
-# 🔄 Project Workflow
-
-This project followed a structured end-to-end analytics process.
+## 🔄 Project Workflow
 
 ```text
-Business Problem
-        │
-        ▼
-Data Collection
-        │
-        ▼
-Data Quality Assessment
-        │
-        ▼
-Data Cleaning
-        │
-        ▼
-Feature Engineering
-        │
-        ▼
-Exploratory Data Analysis (SQL)
-        │
-        ▼
-Business KPI Development
-        │
-        ▼
-Dashboard Design
-        │
-        ▼
-Business Insights
-        │
-        ▼
-Executive Recommendations
+Business Problem → Data Collection → Data Quality Assessment → Data Cleaning
+→ Feature Engineering → Exploratory Data Analysis (SQL) → Business KPI Development
+→ Dashboard Design → Business Insights → Executive Recommendations
 ```
 
-This workflow demonstrates a complete data analytics lifecycle, transforming raw data into actionable business insights.
+Full detail: [`2. Project Planning/project_workflow.md`](<2. Project Planning/project_workflow.md>)
 
-# 🧹 Data Cleaning & Preparation
+## 🧹 Data Cleaning & Preparation
 
-Before performing any analysis, the datasets were assessed to ensure data quality, consistency and reliability.
+Data quality checks were run in Databricks SQL before any analysis
+(`3. Data Processing/01_data_quality_checks.sql`). Key findings and how they were
+resolved (`02_data_cleaning.sql`):
 
-The following data quality checks were completed using Databricks SQL.
+| Issue Found | Resolution |
+|---|---|
+| 17 fully duplicated viewing records | Removed via `SELECT DISTINCT` |
+| Race missing on 25.2% of subscribers | Standardised to `Uncategorized` |
+| Gender missing on 17.1% of subscribers | Standardised to `Uncategorized` |
+| `Region = 'Uncategorized'` for 920 subscribers | Kept visible, flagged with `region_is_unknown`, excluded from "top province" rankings |
+| 920 subscribers recorded at `age = 0` | Flagged with `is_incomplete_profile`; excluded from age-based demographic analysis rather than reported as a real "Infants" segment |
+| `duration` stored as `HH:MM:SS` text | Converted to `duration_seconds` / `duration_minutes` for aggregation |
 
-### ✔ Duplicate Detection
+## ⚙️ Feature Engineering
 
-Verified that each subscriber (UserID) appeared only once in the customer profile dataset.
-
-### ✔ Missing Values
-
-Checked for missing values across critical fields including:
-
-- UserID
-- Age
-- Gender
-- Race
-- Province
-- Email
-- Social Media Handle
-
-### ✔ Standardisation
-
-Several inconsistent values were standardised.
-
-Examples include:
-
-| Original Value | Standardised Value |
-|---------------|--------------------|
-| Sawsee | SawSee |
-| Supersport Live Events | Live Events |
-| other | None |
-| blank values | Uncategorized |
-
-### ✔ Data Validation
-
-Validated:
-
-- Minimum and maximum ages
-- Null User IDs
-- Duplicate subscribers
-- Invalid province values
-- Blank gender values
-
-These quality checks ensured that the analytical dataset accurately represented Bright TV's subscriber base before business analysis commenced.
-
-# ⚙ Feature Engineering
-
-Several analytical features were created from the original datasets to improve reporting and dashboard development.
-
-New variables include:
+New features built in `3. Data Processing/03_feature_engineering.sql`:
 
 | Feature | Business Purpose |
 |----------|------------------|
-| Age Groups | Audience segmentation |
-| Region | Province standardisation |
-| Time of Day | Peak viewing analysis |
-| Day Classification | Weekend vs Weekday comparison |
-| Screen Time Bucket | Viewer engagement analysis |
-| Month ID | Monthly trend reporting |
-| Watch Date | Daily analysis |
-| TV Channel | Channel standardisation |
+| `duration_minutes` | Numeric, aggregatable version of session length |
+| `is_weekend` | Numeric weekend flag for direct SUM/AVG use |
+| `is_heavy_viewer` | Session-level heavy-usage flag (>60 min) |
+| `engagement_score` | Simple per-session engagement metric for dashboarding |
+| `daypart_group` | AM/PM grouping for a simpler executive dashboard slicer |
+| `subscriber_segment` | Subscriber-level tier: Inactive / Light / Regular / Power Viewer, based on total minutes watched |
 
-These engineered features transformed raw operational data into meaningful business metrics for analysis.
+## 💻 SQL Skills Demonstrated
 
-# 💻 SQL Skills Demonstrated
+- **Data Exploration:** SELECT, DISTINCT, LIMIT
+- **Data Quality:** COUNT(), GROUP BY, HAVING, NULL checks, duplicate detection
+- **Data Cleaning:** CASE WHEN, COALESCE(), standardisation, missing value handling
+- **Feature Engineering:** CAST(), SPLIT(), derived columns, time and age
+  categorisation
+- **Data Analysis:** Aggregate functions, CTEs, window functions (RANK, AVG OVER),
+  business KPIs, customer segmentation
 
-Throughout this project, I applied practical SQL techniques to prepare, transform and analyse business data.
+## 📌❓ Business Questions Answered
 
-### Data Exploration
+Full list with figures in
+[`4. Project Presentation/executive_summary.md`](<4. Project Presentation/executive_summary.md>).
+Covers audience analysis (subscriber counts, province, age group, gender, race),
+viewing behaviour (channel popularity, peak times, weekday/weekend split, heavy
+users), and business intelligence (target segments, under-engaged provinces,
+channel investment by daypart).
 
-- SELECT
-- DISTINCT
-- LIMIT
+## 📊 Executive KPIs
 
-### Data Quality
+| KPI | Value |
+|------|---|
+| Total Subscribers | 5,375 |
+| Total Viewing Sessions | 9,983 (cleaned) |
+| Average Watch Duration | 10.0 min (active sessions) |
+| Most Watched Channel (by minutes) | ICC Cricket World Cup 2011 |
+| Top Province | Gauteng |
+| Largest Age Group | Youth (20–35) |
+| Peak Viewing Hour | 15:00 |
+| Weekend Viewership | 30.5% of sessions |
 
-- COUNT()
-- GROUP BY
-- HAVING
-- NULL checks
-- Duplicate detection
+## 💡 Business Recommendations
 
-###  Data Cleaning & Preparation
+Full detail in
+[`4. Project Presentation/business_recommendations.md`](<4. Project Presentation/business_recommendations.md>).
+Highlights: prioritise the 3–6pm ad slot, weight programming decisions by
+watch-time rather than session count, launch a re-engagement campaign for the ~23%
+of subscribers with zero recorded viewing, and fix profile completion at sign-up
+before running demographic-targeted campaigns.
 
-- CASE WHEN
-- COALESCE()
-- Data standardisation
-- Missing value handling
-
-### Feature Engineering
-
-- DATE_FORMAT()
-- HOUR()
-- CAST()
-- Derived columns
-- Time categorisation
-- Age segmentation
-
-### Data Analysis
-
-- Aggregate Functions
-- GROUP BY
-- Business KPIs
-- Customer segmentation
-- Channel analysis
-- Audience analysis
-
-This project demonstrates practical SQL skills used by Data Analysts to prepare data for reporting and business intelligence.
-
-# 📌❓Business Questions Answered
-
-This analysis answers several important business questions:
-
-### Audience Analysis
-
-- How many subscribers does Bright TV have?
-- Which province has the highest number of subscribers?
-- Which age group watches the most television?
-- What is the gender distribution of subscribers?
-- Which race groups are represented?
-
-### Viewing Behaviour
-
-- Which channels are watched most frequently?
-- What time of day has the highest audience?
-- Which days generate the highest viewing activity?
-- What percentage of viewing occurs during weekends?
-- Which viewers are classified as heavy users?
-
-### Business Intelligence
-
-- Which audience should Bright TV target?
-- Which provinces require increased marketing?
-- Which channels deserve further investment?
-
-
-# 📊 Executive KPIs
-
-The following KPIs were developed to support executive decision-making.
-
-| KPI | Description |
-|------|-------------|
-| Total Subscribers | Number of registered subscribers |
-| Total Viewing Sessions | Total television viewing sessions |
-| Average Watch Duration | Average viewing duration |
-| Most Watched Channel | Highest performing TV channel |
-| Top Province | Province with the highest audience |
-| Largest Age Group | Largest subscriber segment |
-| Peak Viewing Hour | Busiest viewing period |
-| Weekend Viewership | Weekend vs Weekday analysis |
-
-# 📈 Dashboard screenshots will be added...
-
-### Executive Dashboard
-
-> *(Dashboard screenshot will be inserted below once completed.)*
-
-<p align="center">
-<img src="images/dashboard.png" width="900">
-</p>
-
-# 📁 Repository Structure
+## 📁 Repository Structure
 
 ```text
-Bright-TV-Audience-Analytics
-│
+Bright-TV-Audience-Analytics/
 ├── README.md
-├── dashboard/
-├── data/
-├── documentation/
 ├── images/
-├── sql/
-├── 1.Project Description and Raw Data/
-├── 2.Project Planning/
-├── 3.Data Processing/
-└── 4.Project Presentation/
+├── 1. Project Description and Raw Data/
+│   ├── raw_subscriber_demographics.csv
+│   ├── raw_viewing_behaviour.csv
+│   └── data_dictionary.md
+├── 2. Project Planning/
+│   ├── business_questions.md
+│   └── project_workflow.md
+├── 3. Data Processing/
+│   ├── 01_data_quality_checks.sql
+│   ├── 02_data_cleaning.sql
+│   ├── 03_feature_engineering.sql
+│   └── 04_eda_and_kpis.sql
+└── 4. Project Presentation/
+    ├── executive_summary.md
+    └── business_recommendations.md
 ```
 
-# 🎯 Skills Demonstrated
+## 🎯 Skills Demonstrated
 
-### Technical Skills
+**Technical:** SQL, Databricks SQL, Data Cleaning, Data Transformation, Feature
+Engineering, Data Validation, Exploratory Data Analysis, Business Intelligence,
+KPI Development, GitHub, Microsoft Excel.
 
-- SQL
-- Databricks SQL
-- Data Cleaning
-- Data Transformation
-- Feature Engineering
-- Data Validation
-- Exploratory Data Analysis (EDA)
-- Business Intelligence
-- Dashboard Design
-- KPI Development
-- GitHub
-- Microsoft Excel
+**Analytical:** Problem Solving, Critical Thinking, Data Storytelling, Business
+Analysis, Customer Segmentation, Executive Reporting.
 
-### Analytical Skills
+## 🚀 Future Improvements
 
-- Problem Solving
-- Critical Thinking
-- Data Storytelling
-- Business Analysis
-- Customer Segmentation
-- Data Visualisation
-- Executive Reporting
-```
-
-# 🚀 Future Improvements
-
-Future enhancements for this project include:
-
-- Interactive Power BI dashboard
-- Predictive audience analytics
-- Machine learning for viewer retention
+- Interactive Power BI dashboard built on `subscriber_engagement_summary`
+- Predictive churn modelling using the engagement segments defined here
 - Automated SQL reporting
-- Real-time dashboard integration
-- Cloud data pipeline automation
+- Extending the analysis beyond Q1 2016 once more data is available
 
-# 💡 Business Recommendations
+## 👤 About Me
 
-Based on the analysis, the following recommendations are proposed:
+Hi, I'm **Alice Musindo**, a Data Analyst with a strong interest in Business
+Intelligence, SQL, and data-driven decision-making. This project demonstrates my
+ability to clean, transform, analyse, and communicate data to solve real-world
+business problems.
 
-- Focus marketing campaigns on the highest-performing audience segments.
-- Promote high-performing TV channels during peak viewing periods.
-- Increase engagement in lower-performing provinces through regional campaigns.
-- Develop targeted content for underrepresented age groups.
-- Monitor viewing trends regularly to support programming decisions.
-- Build executive dashboards to enable continuous performance monitoring.
-
-
- # 👤 About Me
-
-Hi, I'm **Alice Musindo**, a Data Analyst with a strong interest in Business Intelligence, SQL, and data-driven decision-making.
-This project demonstrates my ability to clean, transform, analyse and communicate data to solve real-world business problems.
-I am continuously developing my skills in SQL, Power BI, Excel, Databricks and data storytelling while building a portfolio of practical analytics projects.
 Thank you for visiting my repository.
-
-# 📬 Contact
-
-If you'd like to connect or discuss this project:
-
-- **GitHub:** https://github.com/musindoalice-code
-- **Email:** *(musindo.alice@gmail.com)*
----
-
