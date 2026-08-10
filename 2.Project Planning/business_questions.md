@@ -43,9 +43,3 @@ Dashboard Design & Recommendations -> 4. Project Presentation/
 | Data exploration, quality checks, cleaning, feature engineering, final dataset, EDA, KPIs, business insights | `3. Data_Processing/` |
 | Executive summary, dashboard, recommendations | `4. Project Presentation/` |
 
-## Note on run order
-
-`05_Final_Dataset.sql` must run before `06`, `07`, and `08` — it's the script that
-creates the `FinalDataset` table those three query. This was a bug in an earlier
-draft of the pipeline (the final-assembly script was numbered last, after the
-scripts that depended on it); the numbering above reflects the corrected order.
