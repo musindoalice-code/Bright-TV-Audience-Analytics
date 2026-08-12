@@ -10,6 +10,27 @@ behaviour to generate data-driven business insights and executive recommendation
 ![GitHub](https://img.shields.io/badge/GitHub-Portfolio-181717?logo=github&logoColor=white)
 ![Excel](https://img.shields.io/badge/Excel-Analysis-217346?logo=microsoft-excel&logoColor=white)
 
+## 🚀 Live Interactive Dashboard
+
+Explore the **Bright TV Audience Analytics Dashboard** to interact with the analysis, explore audience behaviour, and discover key viewing insights.
+
+### 📊 [Launch the Live Dashboard](https://audience-lens-tv.lovable.app/)
+
+**Dashboard:** https://audience-lens-tv.lovable.app/
+
+The dashboard provides an interactive view of:
+
+* 👥 Subscriber demographics
+* 📺 Channel performance
+* ⏱️ Viewing duration and engagement
+* 🕒 Peak viewing times
+* 📍 Provincial audience patterns
+* 📅 Viewing behaviour by day and time
+* 🎯 Audience segments
+* 📈 Executive KPIs and business insights
+
+> **Try the dashboard:** Click the link above to explore the Bright TV audience analytics interactively.
+
 ## 📌 Project Information
 
 | Category | Details |
