@@ -136,7 +136,7 @@ intelligence techniques.
 
 The project uses two raw tables — `subscriber_demographics` (5,375 rows) and
 `viewing_behaviour` (10,000 rows, Q1 2016) — described in full in
-[`1. Project Description and Raw Data/data_dictionary.md`](<1. Project Description and Raw Data/data_dictionary.md>).
+[`1. Project Description and Raw Data/data_dictionary.md`](1.%20Project%20Description%20and%20Raw%20Data/data_dictionary.md).
 
 ## 🗂️ Data Model
 
@@ -174,7 +174,7 @@ Business Problem → Data Collection → Data Quality Assessment → Data Cleani
 → Dashboard Design → Business Insights → Executive Recommendations
 ```
 
-Full detail: [`2. Project Planning/project_workflow.md`](<2. Project Planning/project_workflow.md>)
+Full detail: [2. Project Planning/project_workflow.md](2.%20Project%20Planning/project_workflow.md)
 
 ## 🧹 Data Cleaning & Preparation
 
@@ -192,7 +192,7 @@ resolved (`03_Data_Cleaning.sql`):
 | 920 subscribers recorded at `age = 0` | Flagged with `is_incomplete_profile`; excluded from age-based demographic analysis rather than reported as a real "Infants" segment |
 | `email_flag` / `sm_flag` logic bug — original `OR`-based condition evaluated to 1 for every row regardless of the actual data | Rewritten to correctly check for a genuinely missing value |
 | Raw channel names inconsistent (`SawSee`/`Sawsee`, four labels for the same Live Events channel) | Standardised in `03_Data_Cleaning.sql` |
-| `Duration 2` stored as a time value; screen-time bucket originally mis-classified 1–4 minute sessions as "No Usage" | Bucket boundary corrected so any real viewing time counts as at least "Low Usage" |
+| `Duration 2` stored as a time value; screen-time bucket originally mis-classified 1–4 minute sessions as "No Usage" | Bucket boundary corrected so any real viewing time counts as at least "Lo[...]
 
 ## ⚙️ Feature Engineering
 
@@ -222,7 +222,7 @@ New features built in `3. Data Processing/04_Feature_Engineering.sql`:
 ## 📌❓ Business Questions Answered
 
 Full list with figures in
-[`4. Project Presentation/executive_summary.md`](<4. Project Presentation/executive_summary.md>).
+[4. Project Presentation/executive_summary.md](4.%20Project%20Presentation/executive_summary.md).
 Covers audience analysis (subscriber counts, province, age group, gender, race),
 viewing behaviour (channel popularity, peak times, weekday/weekend split, heavy
 users), and business intelligence (target segments, under-engaged provinces,
@@ -244,7 +244,7 @@ channel investment by daypart).
 ## 💡 Business Recommendations
 
 Full detail in
-[`4. Project Presentation/business_recommendations.md`](<4. Project Presentation/business_recommendations.md>).
+[4. Project Presentation/business_recommendations.md](4.%20Project%20Presentation/business_recommendations.md).
 Highlights: prioritise the 3–6pm ad slot, weight programming decisions by
 watch-time rather than session count, launch a re-engagement campaign for the ~23%
 of subscribers with zero recorded viewing, and fix profile completion at sign-up
