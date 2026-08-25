@@ -12,25 +12,33 @@ behaviour to generate data-driven business insights and executive recommendation
 
 ## 🚀 Live Interactive Dashboards
 
-This project includes **four dashboards**, each built with a different tool to
+This project includes **five dashboards**, each built with a different tool to
 demonstrate breadth across the BI toolchain.
 
 | Tool | Link / File | Notes |
 |------|-------------|-------|
 | 🟢 Lovable (interactive web app) | **[Launch the Live Dashboard](https://audience-lens-tv.lovable.app/)** | Fully interactive — recommended starting point |
+| 🔵 Google Data Studio | [Open the Data Studio report](https://datastudio.google.com/s/gtNHaZ92jIg) · [PDF export](4.%20Project%20Presentation/Bright_Tv_Viewership-Data%20Studio%20Dashboard.pdf) | Share link |
+| 🟣 Databricks SQL Dashboards | [Viewing Behaviour dashboard](https://dbc-1f555e68-384c.cloud.databricks.com/dashboardsv3/01f196836e2b1daeadac2b6a1fe7dc46/published?o=7474652278053184) · [Second dashboard](https://dbc-1f555e68-384c.cloud.databricks.com/dashboardsv3/01f1a08c59e316f0a3262f16b5ed1cbd/published?o=7474652278053184) | Published links |
 | 🟡 Power BI | *`[ADD YOUR PUBLISHED POWER BI LINK HERE]`* — or upload the `.pbix` file to `4. Project Presentation/` | See note below |
-| 🔵 Google Data Studio | [`Bright_Tv_Viewership-Data Studio Dashboard.pdf`](4.%20Project%20Presentation/Bright_Tv_Viewership-Data%20Studio%20Dashboard.pdf) | Exported as PDF |
 | 🟠 Excel | *`[ADD YOUR EXCEL DASHBOARD FILE TO 4. Project Presentation/ AND LINK IT HERE]`* | PivotTable-based dashboard |
 
 > **Try it live:** Click the Lovable link above to interact with the full audience
 > analytics dashboard — subscriber demographics, channel performance, viewing
 > duration, peak times, provincial patterns, and executive KPIs.
 
-**⚠️ Action needed:** I don't have a live URL for your Power BI dashboard or the
-file path for your Excel dashboard, so those two rows above are placeholders —
+**⚠️ Quick check before submitting:** The Data Studio and Databricks links above
+now look like proper share/published links rather than edit links, which is the
+right move — but it's still worth opening each one in a private/incognito
+browser window (logged out of your own account) to confirm a grader without
+access to your Google or Databricks account can actually view them. If either
+one prompts for login, you'll need to adjust the sharing settings further.
+
+**⚠️ Action needed:** I still don't have a live URL for your Power BI dashboard or
+the file path for your Excel dashboard, so those two rows above are placeholders —
 replace the bracketed text with your actual Power BI publish-to-web link and the
 filename of your Excel dashboard once it's uploaded to
-`4. Project Presentation/`. Leaving the bracketed placeholder text in the live
+`4. Project Presentation/`. Leaving bracketed placeholder text in the live
 README would look unfinished to a grader, so make sure to fill these in before
 submitting.
 
