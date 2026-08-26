@@ -1,0 +1,1527 @@
+{
+  "datasets": [
+    {
+      "name": "c1cbcbca",
+      "displayName": "User Demographics And Engagement Overview Dataset",
+      "queryLines": [
+        "USE CATALOG `workspace`;\n",
+        "USE SCHEMA `default`;\n",
+        "\n",
+        "WITH user_profiles AS (\n",
+        "SELECT UserID,\n",
+        "CASE\n",
+        "WHEN Province=' ' THEN 'Uncategorized'\n",
+        "WHEN Province='None' THEN 'Uncategorized'\n",
+        "WHEN Province IS NULL THEN 'Uncategorized'\n",
+        "ELSE Province\n",
+        "END AS Region,\n",
+        "age,\n",
+        "CASE\n",
+        "WHEN age = 0 THEN 'Infants'\n",
+        "WHEN age BETWEEN 1 AND 12 THEN 'Kids'\n",
+        "WHEN age BETWEEN 13 AND 19 THEN 'Teenager'\n",
+        "WHEN age BETWEEN 20 AND 35 THEN 'Youth'WHEN age BETWEEN 36 AND 50 THEN 'Adult'\n",
+        "WHEN age BETWEEN 51 AND 65 THEN 'Elder'\n",
+        "WHEN age >65 THEN 'Pensioner'\n",
+        "END AS age_groups,\n",
+        "CASE\n",
+        "WHEN Email IS NOT NULL OR Email=' ' OR Email NOT IN ('None')THEN 1\n",
+        "ELSE 0\n",
+        "END AS email_flag,\n",
+        "CASE\n",
+        "WHEN (`Social Media Handle` IS NOT NULL) OR (`Social Media Handle`=' ') OR (`Social Media Handle` NOT IN ('None')) THEN 1 \n",
+        "        ELSE 0 \n",
+        "    END AS sm_flag,\n",
+        "CASE\n",
+        "WHEN Race='other' THEN 'None'\n",
+        "WHEN Race=' ' THEN 'None'\n",
+        "ELSE Race\n",
+        "END AS Race,\n",
+        "CASE\n",
+        "WHEN gender =' ' THEN 'None'\n",
+        "ELSE gender\n",
+        "END AS Gender\n",
+        "FROM retail.default.userprofiles\n",
+        "),\n",
+        "viewership AS (\n",
+        "SELECT\n",
+        "COALESCE(UserID0,userid4) AS userid,\n",
+        "TO_CHAR(RecordDate2, 'yyyyMM') AS month_id,\n",
+        "TO_DATE(RecordDate2) AS watch_date,\n",
+        "--TIME(RecordDate2) AS watch_time,\n",
+        "TO_CHAR(RecordDate2, 'DD') AS day_of_week,\n",
+        "DAYNAME(RecordDate2) AS day_name,\n",
+        "CASE\n",
+        "WHEN DAYNAME(RecordDate2) IN ('Sat', 'Sun') THEN 'weekend'\n",
+        "ELSE 'weekday'\n",
+        "END AS day_classification,\n",
+        "MONTHNAME(RecordDate2) AS month_name,\n",
+        "CASE\n",
+        "WHEN Channel2 IN ('SawSee','Sawsee') THEN 'SawSee'\n",
+        "WHEN Channel2 IN ('SuperSport Live Events','Live on SuperSport', 'Supersport Live Events',\n",
+        "'DStv Events 1') THEN 'Live Events'\n",
+        "ELSE Channel2\n",
+        "END AS Tv_channel,DATE_FORMAT(RecordDate2, 'HH:mm:ss') AS watch_time,\n",
+        "CASE\n",
+        "WHEN HOUR(RecordDate2) BETWEEN 0 AND 5 THEN '01. Midnight'\n",
+        "WHEN HOUR(RecordDate2) BETWEEN 6 AND 11 THEN '02. Morning'\n",
+        "WHEN HOUR(RecordDate2) BETWEEN 12 AND 16 THEN '03. Afternoon'\n",
+        "WHEN HOUR(RecordDate2) BETWEEN 17 AND 23 THEN '04. Evening'\n",
+        "END AS time_of_day,\n",
+        "DATE_FORMAT(`Duration 2`, 'HH:mm:ss') AS duration,\n",
+        "CASE\n",
+        "WHEN UNIX_TIMESTAMP(`Duration 2`) >= 300 AND UNIX_TIMESTAMP(`Duration 2`) <= 1800 THEN '01. Low Usage: <30 min'\n",
+        "WHEN UNIX_TIMESTAMP(`Duration 2`) > 1800 AND UNIX_TIMESTAMP(`Duration 2`) <= 3599 THEN '02. Med Usage: <60 min'\n",
+        "WHEN UNIX_TIMESTAMP(`Duration 2`) >= 3600 THEN '03. High Usage: >60 min'\n",
+        "ELSE '04. No Usage'\n",
+        "END AS screen_time_bucket,\n",
+        "HOUR(RecordDate2) AS hour_of_day\n",
+        "FROM retail.default.viewership\n",
+        ")\n",
+        "SELECT Coalesce(A.userid,B.userid) AS sub_id,\n",
+        "month_id,\n",
+        "watch_date,\n",
+        "day_of_week,\n",
+        "day_name,\n",
+        "day_classification,month_name,\n",
+        "Tv_channel,\n",
+        "time_of_day,\n",
+        "hour_of_day,\n",
+        "screen_time_bucket,\n",
+        "--user_flag,\n",
+        "duration,\n",
+        "Region,\n",
+        "age_groups,\n",
+        "email_flag,\n",
+        "sm_flag,\n",
+        "Race,\n",
+        "Gender\n",
+        "FROM viewership AS A\n",
+        "LEFT JOIN user_profiles AS B\n",
+        "ON A.userid=B.userid;\n",
+        "SELECT\n",
+        "    COALESCE(A.userid, B.userid) AS sub_id,\n",
+        "    month_id,\n",
+        "    watch_date,\n",
+        "    day_in_dataset,\n",
+        "    day_name,\n",
+        "    day_classification,\n",
+        "    month_name,\n",
+        "    Tv_channel,\n",
+        "    time_of_day,\n",
+        "    hour_of_day,\n",
+        "    screen_time_bucket,\n",
+        "    duration,\n",
+        "    Region,\n",
+        "    age_groups,\n",
+        "    email_flag,\n",
+        "    sm_flag,\n",
+        "    Race,\n",
+        "    Gender\n",
+        "\n",
+        "FROM\n",
+        "(\n",
+        "    SELECT\n",
+        "        COALESCE(UserID0, UserID4) AS userid,\n",
+        "        TO_CHAR(RecordDate2, 'yyyyMM') AS month_id,\n",
+        "        TO_DATE(RecordDate2) AS watch_date,\n",
+        "        TO_CHAR(RecordDate2, 'DD') AS day_in_dataset,\n",
+        "        DAYNAME(RecordDate2) AS day_name,\n",
+        "        CASE\n",
+        "            WHEN DAYNAME(RecordDate2) IN ('Sat','Sun') THEN 'weekend'\n",
+        "            ELSE 'weekday'\n",
+        "        END AS day_classification,\n",
+        "        MONTHNAME(RecordDate2) AS month_name,\n",
+        "        CASE\n",
+        "            WHEN Channel2 IN ('SawSee','Sawsee') THEN 'SawSee'\n",
+        "            WHEN Channel2 IN ('SuperSport Live Events',\n",
+        "                              'Live on SuperSport',\n",
+        "                              'Supersport Live Events',\n",
+        "                              'DStv Events 1')\n",
+        "            THEN 'Live Events'\n",
+        "            ELSE Channel2\n",
+        "        END AS Tv_channel,\n",
+        "        DATE_FORMAT(RecordDate2,'HH:mm:ss') AS watch_time,\n",
+        "        CASE\n",
+        "            WHEN HOUR(RecordDate2) BETWEEN 0 AND 5 THEN '01. Midnight'\n",
+        "            WHEN HOUR(RecordDate2) BETWEEN 6 AND 11 THEN '02. Morning'\n",
+        "            WHEN HOUR(RecordDate2) BETWEEN 12 AND 16 THEN '03. Afternoon'\n",
+        "            ELSE '04. Evening'\n",
+        "        END AS time_of_day,\n",
+        "        DATE_FORMAT(`Duration 2`,'HH:mm:ss') AS duration,\n",
+        "        CASE\n",
+        "            WHEN MINUTE(`Duration 2`) * 60 + SECOND(`Duration 2`) BETWEEN 300 AND 1800 THEN '01. Low Usage'\n",
+        "            WHEN MINUTE(`Duration 2`) * 60 + SECOND(`Duration 2`) BETWEEN 1801 AND 3599 THEN '02. Med Usage'\n",
+        "            WHEN MINUTE(`Duration 2`) * 60 + SECOND(`Duration 2`) >= 3600 THEN '03. High Usage'\n",
+        "            ELSE '04. No Usage'\n",
+        "        END AS screen_time_bucket,\n",
+        "        HOUR(RecordDate2) AS hour_of_day\n",
+        "    FROM retail.default.viewership\n",
+        ") AS A\n",
+        "\n",
+        "LEFT JOIN\n",
+        "\n",
+        "(\n",
+        "    SELECT\n",
+        "        UserID,\n",
+        "        CASE\n",
+        "            WHEN Province=' ' THEN 'Uncategorized'\n",
+        "            WHEN Province='None' THEN 'Uncategorized'\n",
+        "            WHEN Province IS NULL THEN 'Uncategorized'\n",
+        "            ELSE Province\n",
+        "        END AS Region,\n",
+        "\n",
+        "        age,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN age=0 THEN 'Infants'\n",
+        "            WHEN age BETWEEN 1 AND 12 THEN 'Kids'\n",
+        "            WHEN age BETWEEN 13 AND 19 THEN 'Teenager'\n",
+        "            WHEN age BETWEEN 20 AND 35 THEN 'Youth'\n",
+        "            WHEN age BETWEEN 36 AND 50 THEN 'Adult'\n",
+        "            WHEN age BETWEEN 51 AND 65 THEN 'Elder'\n",
+        "            WHEN age>65 THEN 'Pensioner'\n",
+        "        END AS age_groups,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN Email IS NOT NULL\n",
+        "              OR Email=' '\n",
+        "              OR Email NOT IN ('None')\n",
+        "            THEN 1\n",
+        "            ELSE 0\n",
+        "        END AS email_flag,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN `Social Media Handle` IS NOT NULL\n",
+        "              OR `Social Media Handle`=' '\n",
+        "              OR `Social Media Handle` NOT IN ('None')\n",
+        "            THEN 1\n",
+        "            ELSE 0\n",
+        "        END AS sm_flag,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN Race='other' THEN 'None'\n",
+        "            WHEN Race=' ' THEN 'None'\n",
+        "            ELSE Race\n",
+        "        END AS Race,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN Gender=' ' THEN 'None'\n",
+        "            ELSE Gender\n",
+        "        END AS Gender\n",
+        "\n",
+        "    FROM retail.default.userprofiles\n",
+        ") AS B\n",
+        "\n",
+        "ON A.userid = B.userid;\n",
+        "\n",
+        "WITH user_profiles AS (\n",
+        "SELECT UserID,\n",
+        "CASE\n",
+        "WHEN Province=' ' THEN 'Uncategorized'\n",
+        "WHEN Province='None' THEN 'Uncategorized'\n",
+        "WHEN Province IS NULL THEN 'Uncategorized'\n",
+        "ELSE Province\n",
+        "END AS Region,\n",
+        "--------------------------------------------------------------------\n",
+        "age,\n",
+        "CASE\n",
+        "WHEN age = 0 THEN 'Infants'\n",
+        "WHEN age BETWEEN 1 AND 12 THEN 'Kids'\n",
+        "WHEN age BETWEEN 13 AND 19 THEN 'Teenager'\n",
+        "WHEN age BETWEEN 20 AND 35 THEN 'Youth'WHEN age BETWEEN 36 AND 50 THEN 'Adult'\n",
+        "WHEN age BETWEEN 51 AND 65 THEN 'Elder'\n",
+        "WHEN age >65 THEN 'Pensioner'\n",
+        "END AS age_groups,\n",
+        "CASE\n",
+        "WHEN Email IS NOT NULL OR Email=' ' OR Email NOT IN ('None')THEN 1\n",
+        "ELSE 0\n",
+        "END AS email_flag,\n",
+        "CASE\n",
+        "WHEN (`Social Media Handle` IS NOT NULL) OR (`Social Media Handle`=' ') OR (`Social Media Handle` NOT IN ('None')) THEN 1 \n",
+        "        ELSE 0 \n",
+        "    END AS sm_flag,\n",
+        "CASE\n",
+        "WHEN Race='other' THEN 'None'\n",
+        "WHEN Race=' ' THEN 'None'\n",
+        "ELSE Race\n",
+        "END AS Race,\n",
+        "CASE\n",
+        "WHEN gender =' ' THEN 'None'\n",
+        "ELSE gender\n",
+        "END AS Gender\n",
+        "FROM retail.default.userprofiles\n",
+        "),\n",
+        "viewership AS (\n",
+        "SELECT\n",
+        "COALESCE(UserID0,userid4) AS userid,\n",
+        "TO_CHAR(RecordDate2, 'yyyyMM') AS month_id,\n",
+        "TO_DATE(RecordDate2) AS watch_date,\n",
+        "--TIME(RecordDate2) AS watch_time,\n",
+        "TO_CHAR(RecordDate2, 'DD') AS day_of_week,\n",
+        "DAYNAME(RecordDate2) AS day_name,\n",
+        "CASE\n",
+        "WHEN DAYNAME(RecordDate2) IN ('Sat', 'Sun') THEN 'weekend'\n",
+        "ELSE 'weekday'\n",
+        "END AS day_classification,\n",
+        "MONTHNAME(RecordDate2) AS month_name,\n",
+        "CASE\n",
+        "WHEN Channel2 IN ('SawSee','Sawsee') THEN 'SawSee'\n",
+        "WHEN Channel2 IN ('SuperSport Live Events','Live on SuperSport', 'Supersport Live Events',\n",
+        "'DStv Events 1') THEN 'Live Events'\n",
+        "ELSE Channel2\n",
+        "END AS Tv_channel,DATE_FORMAT(RecordDate2, 'HH:mm:ss') AS watch_time,\n",
+        "CASE\n",
+        "WHEN HOUR(RecordDate2) BETWEEN 0 AND 5 THEN '01. Midnight'\n",
+        "WHEN HOUR(RecordDate2) BETWEEN 6 AND 11 THEN '02. Morning'\n",
+        "WHEN HOUR(RecordDate2) BETWEEN 12 AND 16 THEN '03. Afternoon'\n",
+        "WHEN HOUR(RecordDate2) BETWEEN 17 AND 23 THEN '04. Evening'\n",
+        "END AS time_of_day,\n",
+        "DATE_FORMAT(`Duration 2`, 'HH:mm:ss') AS duration,\n",
+        "CASE\n",
+        "WHEN UNIX_TIMESTAMP(`Duration 2`) >= 300 AND UNIX_TIMESTAMP(`Duration 2`) <= 1800 THEN '01. Low Usage: <30 min'\n",
+        "WHEN UNIX_TIMESTAMP(`Duration 2`) > 1800 AND UNIX_TIMESTAMP(`Duration 2`) <= 3599 THEN '02. Med Usage: <60 min'\n",
+        "WHEN UNIX_TIMESTAMP(`Duration 2`) >= 3600 THEN '03. High Usage: >60 min'\n",
+        "ELSE '04. No Usage'\n",
+        "END AS screen_time_bucket,\n",
+        "HOUR(RecordDate2) AS hour_of_day\n",
+        "FROM retail.default.viewership\n",
+        ")\n",
+        "SELECT Coalesce(A.userid,B.userid) AS sub_id,\n",
+        "month_id,\n",
+        "watch_date,\n",
+        "day_of_week,\n",
+        "day_name,\n",
+        "day_classification,month_name,\n",
+        "Tv_channel,\n",
+        "time_of_day,\n",
+        "hour_of_day,\n",
+        "screen_time_bucket,\n",
+        "--user_flag,\n",
+        "duration,\n",
+        "Region,\n",
+        "age_groups,\n",
+        "email_flag,\n",
+        "sm_flag,\n",
+        "Race,\n",
+        "Gender\n",
+        "FROM viewership AS A\n",
+        "LEFT JOIN user_profiles AS B\n",
+        "ON A.userid=B.userid;\n",
+        "SELECT\n",
+        "    COALESCE(A.userid, B.userid) AS sub_id,\n",
+        "    month_id,\n",
+        "    watch_date,\n",
+        "    day_in_dataset,\n",
+        "    day_name,\n",
+        "    day_classification,\n",
+        "    month_name,\n",
+        "    Tv_channel,\n",
+        "    time_of_day,\n",
+        "    hour_of_day,\n",
+        "    screen_time_bucket,\n",
+        "    duration,\n",
+        "    Region,\n",
+        "    age_groups,\n",
+        "    email_flag,\n",
+        "    sm_flag,\n",
+        "    Race,\n",
+        "    Gender\n",
+        "\n",
+        "FROM\n",
+        "(\n",
+        "    SELECT\n",
+        "        COALESCE(UserID0, UserID4) AS userid,\n",
+        "        TO_CHAR(RecordDate2, 'yyyyMM') AS month_id,\n",
+        "        TO_DATE(RecordDate2) AS watch_date,\n",
+        "        TO_CHAR(RecordDate2, 'DD') AS day_in_dataset,\n",
+        "        DAYNAME(RecordDate2) AS day_name,\n",
+        "        CASE\n",
+        "            WHEN DAYNAME(RecordDate2) IN ('Sat','Sun') THEN 'weekend'\n",
+        "            ELSE 'weekday'\n",
+        "        END AS day_classification,\n",
+        "        MONTHNAME(RecordDate2) AS month_name,\n",
+        "        CASE\n",
+        "            WHEN Channel2 IN ('SawSee','Sawsee') THEN 'SawSee'\n",
+        "            WHEN Channel2 IN ('SuperSport Live Events',\n",
+        "                              'Live on SuperSport',\n",
+        "                              'Supersport Live Events',\n",
+        "                              'DStv Events 1')\n",
+        "            THEN 'Live Events'\n",
+        "            ELSE Channel2\n",
+        "        END AS Tv_channel,\n",
+        "        DATE_FORMAT(RecordDate2,'HH:mm:ss') AS watch_time,\n",
+        "        CASE\n",
+        "            WHEN HOUR(RecordDate2) BETWEEN 0 AND 5 THEN '01. Midnight'\n",
+        "            WHEN HOUR(RecordDate2) BETWEEN 6 AND 11 THEN '02. Morning'\n",
+        "            WHEN HOUR(RecordDate2) BETWEEN 12 AND 16 THEN '03. Afternoon'\n",
+        "            ELSE '04. Evening'\n",
+        "        END AS time_of_day,\n",
+        "        DATE_FORMAT(`Duration 2`,'HH:mm:ss') AS duration,\n",
+        "        CASE\n",
+        "            WHEN MINUTE(`Duration 2`) * 60 + SECOND(`Duration 2`) BETWEEN 300 AND 1800 THEN '01. Low Usage'\n",
+        "            WHEN MINUTE(`Duration 2`) * 60 + SECOND(`Duration 2`) BETWEEN 1801 AND 3599 THEN '02. Med Usage'\n",
+        "            WHEN MINUTE(`Duration 2`) * 60 + SECOND(`Duration 2`) >= 3600 THEN '03. High Usage'\n",
+        "            ELSE '04. No Usage'\n",
+        "        END AS screen_time_bucket,\n",
+        "        HOUR(RecordDate2) AS hour_of_day\n",
+        "    FROM retail.default.viewership\n",
+        ") AS A\n",
+        "\n",
+        "LEFT JOIN\n",
+        "\n",
+        "(\n",
+        "    SELECT\n",
+        "        UserID,\n",
+        "        CASE\n",
+        "            WHEN Province=' ' THEN 'Uncategorized'\n",
+        "            WHEN Province='None' THEN 'Uncategorized'\n",
+        "            WHEN Province IS NULL THEN 'Uncategorized'\n",
+        "            ELSE Province\n",
+        "        END AS Region,\n",
+        "\n",
+        "        age,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN age=0 THEN 'Infants'\n",
+        "            WHEN age BETWEEN 1 AND 12 THEN 'Kids'\n",
+        "            WHEN age BETWEEN 13 AND 19 THEN 'Teenager'\n",
+        "            WHEN age BETWEEN 20 AND 35 THEN 'Youth'\n",
+        "            WHEN age BETWEEN 36 AND 50 THEN 'Adult'\n",
+        "            WHEN age BETWEEN 51 AND 65 THEN 'Elder'\n",
+        "            WHEN age>65 THEN 'Pensioner'\n",
+        "        END AS age_groups,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN Email IS NOT NULL\n",
+        "              OR Email=' '\n",
+        "              OR Email NOT IN ('None')\n",
+        "            THEN 1\n",
+        "            ELSE 0\n",
+        "        END AS email_flag,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN `Social Media Handle` IS NOT NULL\n",
+        "              OR `Social Media Handle`=' '\n",
+        "              OR `Social Media Handle` NOT IN ('None')\n",
+        "            THEN 1\n",
+        "            ELSE 0\n",
+        "        END AS sm_flag,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN Race='other' THEN 'None'\n",
+        "            WHEN Race=' ' THEN 'None'\n",
+        "            ELSE Race\n",
+        "        END AS Race,\n",
+        "\n",
+        "        CASE\n",
+        "            WHEN Gender=' ' THEN 'None'\n",
+        "            ELSE Gender\n",
+        "        END AS Gender\n",
+        "\n",
+        "    FROM retail.default.userprofiles\n",
+        ") AS B\n",
+        "\n",
+        "ON A.userid = B.userid;"
+      ]
+    },
+    {
+      "name": "viewership_trends",
+      "displayName": "Viewership Patterns by Day Type",
+      "queryLines": [
+        "SELECT\n",
+        "  CASE\n",
+        "    WHEN Channel2 IN ('SawSee', 'Sawsee') THEN 'SawSee'\n",
+        "    WHEN\n",
+        "      Channel2 IN (\n",
+        "        'SuperSport Live Events', 'Live on SuperSport', 'Supersport Live Events', 'DStv Events 1'\n",
+        "      )\n",
+        "    THEN\n",
+        "      'Live Events'\n",
+        "    ELSE Channel2\n",
+        "  END AS Tv_channel,\n",
+        "  CASE\n",
+        "    WHEN DAYNAME(RecordDate2) IN ('Sat', 'Sun') THEN 'Weekend'\n",
+        "    ELSE 'Weekday'\n",
+        "  END AS day_type,\n",
+        "  COUNT(*) AS viewership_count\n",
+        "FROM\n",
+        "  retail.default.viewership\n",
+        "WHERE\n",
+        "  Channel2 IS NOT NULL\n",
+        "GROUP BY\n",
+        "  Tv_channel,\n",
+        "  day_type\n",
+        "ORDER BY\n",
+        "  Tv_channel,\n",
+        "  day_type"
+      ],
+      "catalog": "retail",
+      "schema": "default"
+    }
+  ],
+  "pages": [
+    {
+      "name": "6afaeda1",
+      "displayName": "Viewership",
+      "layout": [
+        {
+          "widget": {
+            "name": "d9666af8",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    },
+                    {
+                      "name": "Tv_channel",
+                      "expression": "`Tv_channel`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Viewership Count by TV Channel",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Tv_channel",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "count(*)",
+                  "scale": {
+                    "type": "quantitative",
+                    "colorRamp": {
+                      "mode": "scheme",
+                      "scheme": "viridis"
+                    }
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 12,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "405762ec",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"text-align:center;display:block\"><span style=\"font-size:48px;line-height:1.5;color:#077A9D\">BRIGHT TV VIEWERSHIP ANALYSIS</span></span>"
+              ]
+            },
+            "specExtensions": {
+              "widgetBackgroundColor": {
+                "light": "#132133",
+                "dark": "#111B1C"
+              },
+              "widgetBorderColor": {
+                "light": "#FFFFFF",
+                "dark": "#111C1C"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "89aba488",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "sum(hour_of_day)",
+                      "expression": "SUM(`hour_of_day`)"
+                    },
+                    {
+                      "name": "Tv_channel",
+                      "expression": "`Tv_channel`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Viewership Count by TV Channel",
+                "showTitle": true
+              },
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 1
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "sum(hour_of_day)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "Tv_channel",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 11,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "eb5a7ecc",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "hour_of_day",
+                      "expression": "`hour_of_day`"
+                    },
+                    {
+                      "name": "Tv_channel",
+                      "expression": "`Tv_channel`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Viewership Count by TV Channel",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "hour_of_day",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "Tv_channel",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "hour_of_day",
+                  "scale": {
+                    "type": "quantitative",
+                    "colorRamp": {
+                      "mode": "single-hue",
+                      "baseColor": {
+                        "themeColorType": "visualizationColors",
+                        "position": 7
+                      }
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 11,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "eb2de13d",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "sum(hour_of_day)",
+                      "expression": "SUM(`hour_of_day`)"
+                    },
+                    {
+                      "name": "Gender",
+                      "expression": "`Gender`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Viewership Count by TV Channel",
+                "showTitle": true
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(hour_of_day)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "Gender",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 20,
+            "width": 11,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "5491db34",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "sum(hour_of_day)",
+                      "expression": "SUM(`hour_of_day`)"
+                    },
+                    {
+                      "name": "bin(hour_of_day, binWidth=2)",
+                      "expression": "BIN_FLOOR(`hour_of_day`, 2)"
+                    },
+                    {
+                      "name": "countdistinct(duration)",
+                      "expression": "COUNT(DISTINCT `duration`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "histogram",
+              "encodings": {
+                "x": {
+                  "fieldName": "bin(hour_of_day, binWidth=2)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "countdistinct(duration)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "sum(hour_of_day)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 14,
+            "width": 11,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "cac806dc",
+            "queries": [
+              {
+                "name": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_Region",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "Region",
+                      "expression": "`Region`"
+                    },
+                    {
+                      "name": "Region_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Region",
+                    "queryName": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_Region"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 1,
+            "y": 24,
+            "width": 3,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "8370270c",
+            "queries": [
+              {
+                "name": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_Tv_channel",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "Tv_channel",
+                      "expression": "`Tv_channel`"
+                    },
+                    {
+                      "name": "Tv_channel_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Tv_channel",
+                    "queryName": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_Tv_channel"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 5,
+            "y": 24,
+            "width": 3,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "50f7d802",
+            "queries": [
+              {
+                "name": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_Race",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "Race",
+                      "expression": "`Race`"
+                    },
+                    {
+                      "name": "Race_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Race",
+                    "queryName": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_Race"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 24,
+            "width": 3,
+            "height": 1
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "c45fbf72",
+      "displayName": "Dashboard",
+      "layout": [
+        {
+          "widget": {
+            "name": "c8d4d2a6",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "Tv_channel",
+                      "expression": "`Tv_channel`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Viewership Count by TV Channel",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Tv_channel",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 7,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "17f4c664",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "bin(hour_of_day, binWidth=2)",
+                      "expression": "BIN_FLOOR(`hour_of_day`, 2)"
+                    },
+                    {
+                      "name": "count(hour_of_day)",
+                      "expression": "COUNT(`hour_of_day`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "histogram",
+              "encodings": {
+                "x": {
+                  "fieldName": "bin(hour_of_day, binWidth=2)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(hour_of_day)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "cb06e5bd",
+      "displayName": "Channel",
+      "layout": [
+        {
+          "widget": {
+            "name": "4b7e05c1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "screen_time_bucket",
+                      "expression": "`screen_time_bucket`"
+                    },
+                    {
+                      "name": "Tv_channel",
+                      "expression": "`Tv_channel`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Tv_channel",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "screen_time_bucket",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "screen_time_bucket",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 12,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "0e1c1fdf",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "viewership_trends",
+                  "fields": [
+                    {
+                      "name": "day_type",
+                      "expression": "`day_type`"
+                    },
+                    {
+                      "name": "Tv_channel",
+                      "expression": "`Tv_channel`"
+                    },
+                    {
+                      "name": "viewership_count",
+                      "expression": "`viewership_count`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Weekday vs Weekend Viewing by Channel",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Tv_channel",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "viewership_count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "day_type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 12,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "194c61bb",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "viewership_trends",
+                  "fields": [
+                    {
+                      "name": "day_type",
+                      "expression": "`day_type`"
+                    },
+                    {
+                      "name": "viewership_count",
+                      "expression": "`viewership_count`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Weekday vs Weekend Viewing by Channel",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "day_type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "viewership_count",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "day_type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 12,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "5df582fb",
+            "multilineTextboxSpec": {
+              "lines": [
+                "<span style=\"text-align:center;display:block\"><span style=\"font-size: 48px;line-height: 1.5;color: #00A972;\">CHANNEL PERFORMANCE</span></span>"
+              ]
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "light": "#1C0B0B"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "97a3f398",
+      "displayName": "Audience",
+      "layout": [
+        {
+          "widget": {
+            "name": "3d187b5c",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "Gender",
+                      "expression": "`Gender`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Gender",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "count(*)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "4b37f013",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "age_groups",
+                      "expression": "`age_groups`"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`Tv_channel` IN (`Tv_channel`) OR TRUE"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "histogram",
+              "encodings": {
+                "x": {
+                  "fieldName": "age_groups",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "age_groups",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "d36e8503",
+            "queries": [
+              {
+                "name": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_Gender",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "Gender",
+                      "expression": "`Gender`"
+                    },
+                    {
+                      "name": "Gender_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "Gender",
+                    "queryName": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_Gender"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 1,
+            "y": 11,
+            "width": 3,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "bb4629b1",
+            "queries": [
+              {
+                "name": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_age_groups",
+                "query": {
+                  "datasetName": "c1cbcbca",
+                  "fields": [
+                    {
+                      "name": "age_groups",
+                      "expression": "`age_groups`"
+                    },
+                    {
+                      "name": "age_groups_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true
+              },
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "age_groups",
+                    "queryName": "dashboards/01f1968909b61c49a144207a8aa0191b/datasets/a1f3b2edda944f328a056152b8538bff_age_groups"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 11,
+            "width": 3,
+            "height": 1
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
