@@ -1,3 +1,4 @@
+![Bright TV Audience Analytics](bright-tv-banner.svg)
 # 📺 Bright TV Audience Analytics
 ### SQL • Business Intelligence • Data Analytics Portfolio Project
 
