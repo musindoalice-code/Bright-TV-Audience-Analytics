@@ -1,8 +1,7 @@
-![Bright TV Audience Analytics](bright-tv-banner.svg)
+![Bright TV Audience Analytics](bright-tv-banner.png)
+
 # 📺 Bright TV Audience Analytics
 ### SQL • Business Intelligence • Data Analytics Portfolio Project
-
-This project explores Bright TV subscriber demographics and television viewing behaviour to uncover meaningful patterns and turn the data into practical business insights and executive recommendations.
 
 ![Databricks SQL](https://img.shields.io/badge/Databricks-SQL-red?logo=databricks&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-Analytics-blue?logo=postgresql&logoColor=white)
@@ -12,9 +11,41 @@ This project explores Bright TV subscriber demographics and television viewing b
 
 ---
 
-## 🚀 Live Interactive Dashboards
+## 📺 30-Second Read
 
-One of the goals of this project was to show the same analysis across different Business Intelligence tools. The project therefore includes **five dashboards**, each created using a different platform to demonstrate my ability to work across the BI toolchain.
+> **5,375 subscribers. 9,983 cleaned viewing sessions. One SQL analysis, delivered five different ways.**
+> This project turns Bright TV's subscriber and viewing data into a clear picture of who's watching, when, and where — built so a lecturer, recruiter, or executive can open it in whichever tool they already trust.
+
+I took raw subscriber demographics and Q1 2016 viewing logs through a full analytics pipeline in Databricks SQL — cleaning, feature engineering, KPI development — then delivered the same story through Lovable, Power BI, Google Data Studio, Excel, and Databricks dashboards.
+
+> ⚠️ **Note on this section:** your original README's Table of Contents references dedicated **Executive KPIs** and **Business Recommendations** sections further down, but that content wasn't included in what you pasted here. I've restructured everything you did share, but I'd rather ask than invent your actual audience findings — paste those two sections in and I'll pull the real numbers and recommendations up into the summary below, where they'll have the most impact.
+
+---
+
+## 📌 Executive Summary
+
+| Category | Details |
+|---|---|
+| Project Type | Business Intelligence & SQL Analytics |
+| Industry | Media & Entertainment |
+| Dataset Size | 5,375 subscribers · 9,983 cleaned viewing sessions (Q1 2016) |
+| Tools Delivered | Databricks SQL, SQL, Excel, Power BI, Google Data Studio, Lovable, GitHub |
+| Analyst | Alice Musindo |
+| Status | Complete |
+
+Bright TV wants to understand how subscribers engage with content and how that behaviour differs across demographics, in order to make better calls on programming, advertising, and retention. This project turns the raw subscriber and viewing data into a decision-ready analysis, delivered across five BI platforms so it reaches whichever stakeholder is reviewing it.
+
+---
+
+## 🌟 Project Highlights
+
+- **Data integrity, not vanity metrics.** Removed 17 duplicate viewing records, standardised inconsistent nulls, and flagged 920 incomplete sign-up profiles instead of miscounting them as a real audience segment.
+- **Reusable, not one-off, SQL.** Built CTEs and window functions into business-facing KPIs (e.g. Average View Duration, engagement segments) that hold up beyond this single report.
+- **One analysis, five audiences.** The same conclusions are delivered through Lovable (interactive web app), Power BI, Google Data Studio, Excel, and Databricks — so the format never gets in the way of the finding.
+
+---
+
+## 🚀 Live Interactive Dashboards
 
 | Tool | Link / File | Notes |
 |------|-------------|-------|
@@ -32,45 +63,12 @@ One of the goals of this project was to show the same analysis across different 
 
 ---
 
-## 📌 Project Information
-
-| Category | Details |
-|----------|----------|
-| **Project Type** | Business Intelligence & SQL Analytics |
-| **Industry** | Media & Entertainment |
-| **Tools Used** | Databricks SQL, SQL, Excel, Power BI, Google Data Studio, Lovable, GitHub |
-| **Dataset Size** | 5,375 subscribers · 9,983 cleaned viewing sessions (Q1 2016) |
-| **Analyst** | Alice Musindo |
-| **Status** | Complete |
-
----
-
-## 📌 Executive Summary
-
-Bright TV wants to better understand how its subscribers engage with television content and how viewing behaviour differs across customer demographics. The aim of this project was to turn raw subscriber and viewing data into insights that can support better programming, audience engagement, advertising, and strategic decisions.
-
-Using Databricks SQL, I followed the full analytics process—from exploring and checking the data, through cleaning and feature engineering, to analysing viewing patterns, developing KPIs, and creating dashboards.
-
-The final project brings together SQL analysis, business intelligence dashboards, and executive recommendations to show how data can be used to support more informed business decisions.
-
----
-
-## 🌟 Project Highlights
-
-- **Data Integrity:** Cleaned and validated subscriber data by removing 17 duplicate viewing records, standardising inconsistent null values, and flagging 920 incomplete sign-up profiles instead of incorrectly treating them as a real audience segment.
-- **Advanced SQL:** Built reusable SQL queries and analytical features using CTEs and window functions.
-- **KPI Development:** Developed business-focused metrics, including Average View Duration and subscriber engagement segments.
-- **Reporting Ready:** Prepared optimised and pre-aggregated datasets that could be used smoothly across different dashboard tools.
-- **Multi-Tool Dashboarding:** Delivered the analysis across Lovable, Power BI, Google Data Studio, Excel, and Databricks dashboards to demonstrate cross-platform reporting skills.
-
----
-
 ## 📑 Table of Contents
 
-- [Live Interactive Dashboards](#-live-interactive-dashboards)
-- [Project Information](#-project-information)
+- [30-Second Read](#-30-second-read)
 - [Executive Summary](#-executive-summary)
 - [Project Highlights](#-project-highlights)
+- [Live Interactive Dashboards](#-live-interactive-dashboards)
 - [Business Problem](#-business-problem)
 - [Project Objectives](#-project-objectives)
 - [Technology Stack](#️-technology-stack)
@@ -179,3 +177,6 @@ The analysis connects subscriber demographic information to viewing behaviour us
 │ duration                      │
 │ day_classification            │
 └──────────────────────────────┘
+```
+
+> 📌 **The rest of your README (Project Workflow, Data Cleaning & Preparation, Feature Engineering, SQL Skills Demonstrated, Business Questions Answered, Executive KPIs, Business Recommendations, Supplementary SQL Practice, Repository Structure, Skills Demonstrated, Future Improvements, About Me) wasn't included in the pasted content, so it isn't reproduced here.** Paste those sections in and I'll fold the same recruiter-first restructuring through the rest of the document — most importantly pulling your actual Executive KPIs and Business Recommendations into the top summary with real numbers, in place of the placeholder note above.
