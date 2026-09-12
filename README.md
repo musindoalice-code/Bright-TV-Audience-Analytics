@@ -179,4 +179,4 @@ The analysis connects subscriber demographic information to viewing behaviour us
 └──────────────────────────────┘
 ```
 
-> 📌 **The rest of your README (Project Workflow, Data Cleaning & Preparation, Feature Engineering, SQL Skills Demonstrated, Business Questions Answered, Executive KPIs, Business Recommendations, Supplementary SQL Practice, Repository Structure, Skills Demonstrated, Future Improvements, About Me) wasn't included in the pasted content, so it isn't reproduced here.** Paste those sections in and I'll fold the same recruiter-first restructuring through the rest of the document — most importantly pulling your actual Executive KPIs and Business Recommendations into the top summary with real numbers, in place of the placeholder note above.
+
